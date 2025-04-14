@@ -92,7 +92,7 @@ public class SimpleThreading {
 
     class InnerThread implements Runnable{
 
-        private int name;
+        private final int name;
         public InnerThread(int name){
             this.name = name;
         }

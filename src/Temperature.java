@@ -16,7 +16,14 @@ public class Temperature {
      * @return
      */
     public static TemperatureScale createF2C() {
-        TemperatureScale f2C = null;
+        TemperatureScale f2C = new TemperatureScale() {
+
+            @Override
+            public double convert(double temperature) {
+                return(temperature-32)/1.8;
+            }
+            
+        };
 
         // Delete from here
        
@@ -35,7 +42,7 @@ public class Temperature {
      * @return
      */
     public static TemperatureScale createC2F() {
-        TemperatureScale c2F = null;
+        TemperatureScale c2F = (temperature) -> (temperature * 1.8) + 32;
 
         // Delete from here
        
@@ -61,6 +68,11 @@ public class Temperature {
             // 2. Use f2C variable to convert the temperature to Celsius and
             //    store result in celciusTemps
         // Delete from here
+
+        for(Double t : temps){
+            fahrenheitTemps.add(c2F.convert(t));
+            celsiusTemps.add(f2C.convert(t));
+        }
        
 
         // to here
@@ -69,6 +81,11 @@ public class Temperature {
         // Using stream(), filter(), and forEach(), print on a separate line all
         // elements of fahrenheitTemps that are *above* feezing (32F)
         // Delete from here
+
+        System.out.println("Fahrenheit Temperatures that are above feezing: ");
+        fahrenheitTemps.stream()
+        .filter(t->t>32)
+        .forEach(System.out::println);
       
        
       
